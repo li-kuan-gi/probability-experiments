@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pólya's Urn Simulation - Interactive</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        p.description {
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        input {
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+
+        button {
+            grid-column: 1 / -1;
+            background-color: #2563eb;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        #plot {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+        }
+
+        .loading {
+            font-style: italic;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pólya's Urn Simulation</h1>
+        <p class="description">Watch how proportions converge over time in this path-dependent process.</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="red">Initial Red</label>
+                <input type="number" id="red" value="1" min="1">
+            </div>
+            <div class="control-group">
+                <label for="green">Initial Green</label>
+                <input type="number" id="green" value="1" min="1">
+            </div>
+            <div class="control-group">
+                <label for="add">Balls to Add</label>
+                <input type="number" id="add" value="1" min="1">
+            </div>
+            <div class="control-group">
+                <label for="steps">Steps</label>
+                <input type="number" id="steps" value="500" min="1" max="5000">
+            </div>
+            <div class="control-group">
+                <label for="trials">Trials</label>
+                <input type="number" id="trials" value="10" min="1" max="100">
+            </div>
+            <button id="run-btn" py-click="run_simulation">Run Simulation</button>
+        </div>
+
+        <div id="plot">
+            <div class="loading">Loading PyScript environment...</div>
+        </div>
+    </div>
+
+    <py-config>
+        packages = ["numpy", "matplotlib"]
+        [[fetch]]
+        files = ["polya_urn.py", "pyscript_logic.py"]
+    </py-config>
+
+    <script type="py" src="./pyscript_logic.py"></script>
+</body>
+
+</html>
