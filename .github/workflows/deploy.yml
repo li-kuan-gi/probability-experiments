@@ -25,7 +25,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests
         run: |
-          python -m pytest polya_urn/test_polya_urn.py
+          python -m pytest .
 
   deploy:
     needs: test
