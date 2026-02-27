@@ -19,7 +19,7 @@ The proportion of red balls in the urn eventually converges to a random variable
 
 You can view the interactive simulation online via PyScript.
 
-[Link to GitHub Pages (to be set up)]
+[Link to GitHub Pages](https://li-kuan-gi.github.io/probability-experiments/)
 
 ## Local Development
 
